@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parallax overlap</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:500" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="smooth-scroll-wrapper">
+        <div class="content">
+            <div class="container">
+                <div class="image-container">
+                    <h2 class="text text-dark">
+                        <div class="parallax-title">
+                            I am a Golder retriever
+                        </div>
+                    </h2>
+                </div>
+                <h2 class="text">
+                    <div class="parallax-title">
+                        I am a Golder retriever
+                    </div>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <script>
+        let atScroll = false;
+        let parallaxTitle = document.querySelectorAll(".parallax-title");
+
+        const scrollProgress = () => {
+            atScroll = true;
+        };
+
+        const raf = () => {
+            if (atScroll) {
+                parallaxTitle.forEach((element, index) => {
+                    element.style.transform = "translateX(" + window.scrollY / 8 + "%)";
+                });
+                atScroll = false;
+            }
+            requestAnimationFrame(raf);
+        };
+
+        requestAnimationFrame(raf);
+        window.addEventListener("scroll", scrollProgress);
+
+    </script>
+</body>
+
+</html>
